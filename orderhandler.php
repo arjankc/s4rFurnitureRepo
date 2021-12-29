@@ -14,20 +14,6 @@ $payment=$_POST['payment'];
 $sql = "INSERT INTO orders(customer_id, address, phone, total) VALUES('$customerid','$address', '$phone', '$total')";
 $connect->query($sql);
 
-
-echo 'your total bill amount is Rs.';
-echo $total;
-echo '<br>';
-echo 'your customer_id is.';
-echo $customerid;
-echo '<br>';
-echo 'your address is Rs.';
-echo $address;
-echo '<br>';
-echo 'your phone is';
-echo $phone;
-echo '<br>';
-
 $sql2 = "SELECT id from orders order by id DESC limit 1";
 $result = $connect->query($sql2);
 $final = $result->fetch_assoc();
@@ -47,8 +33,8 @@ if ($payment == "eSewa") {
     header("location:esewa.php");
 } else {
     echo "<script> alert ('order has been placed');
-	# window.location.href='index.php';
+	window.location.href='index.php';
 	</script>";
 }
-# unset($_SESSION["cart"]);
+unset($_SESSION["cart"]);
 ?>
