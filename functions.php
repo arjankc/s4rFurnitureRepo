@@ -5,8 +5,8 @@ function search($connect){
     $res=mysqli_query($connect,$sql);
     $datas = array();
     
-        while($row=mysqli_fetch_assoc($res)){
-               $datas[]=$row;
+        while($final=mysqli_fetch_assoc($res)){
+               $datas[]=$final;
             }
             return $datas;
     

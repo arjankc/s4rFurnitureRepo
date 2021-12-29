@@ -34,7 +34,7 @@ require('header.php');
                         $id = $_GET['id'];
                         $sql = "SELECT c.name AS catname, d.* FROM products d JOIN categories c ON d.category_id = c.id  WHERE d.id='$id'";
                         $results = $connect->query($sql);
-                        $row = $results->fetch_assoc();
+                        $final = $results->fetch_assoc();
 
                         ?>
                         <div class="col-md-6 pr-35 pr-lg-15 pr-md-15 pr-sm-15 pr-xs-15">
@@ -42,26 +42,26 @@ require('header.php');
                             <div class="product-details-left">
                                 <div class="product-details-images">
                                     <div class="lg-image">
-                                        <img src="<?php $path = $row['image1'];
+                                        <img src="<?php $path = $final['image1'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" alt="">
-                                        <a href="<?php $path = $row['image1'];
+                                        <a href="<?php $path = $final['image1'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<?php $path = $row['image2'];
+                                        <img src="<?php $path = $final['image2'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" alt="">
-                                        <a href="<?php $path = $row['image2'];
+                                        <a href="<?php $path = $final['image2'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<?php $path = $row['image1'];
+                                        <img src="<?php $path = $final['image1'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" alt="">
-                                        <a href="<?php $path = $row['image1'];
+                                        <a href="<?php $path = $final['image1'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
                                     </div>
@@ -69,16 +69,16 @@ require('header.php');
 
                                 </div>
                                 <div class="product-details-thumbs">
-                                    <div class="sm-image"><img src="<?php $path = $row['image1'];
+                                    <div class="sm-image"><img src="<?php $path = $final['image1'];
                                                                     $display = substr($path, 3);
                                                                     echo $display; ?>" alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="<?php $path = $row['image2'];
+                                    <div class="sm-image"><img src="<?php $path = $final['image2'];
                                                                     $display = substr($path, 3);
                                                                     echo $display; ?>" alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="<?php $path = $row['image1'];
+                                    <div class="sm-image"><img src="<?php $path = $final['image1'];
                                                                     $display = substr($path, 3);
                                                                     echo $display; ?>" alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="<?php $path = $row['image2'];
+                                    <div class="sm-image"><img src="<?php $path = $final['image2'];
                                                                     $display = substr($path, 3);
                                                                     echo $display; ?>" alt="product image thumb"></div>
 
@@ -89,7 +89,7 @@ require('header.php');
                         <div class="col-md-6">
                             <!--Product Details Content Start-->
                             <div class="product-details-content">
-                                <h2><?php echo $row['name'] ?></h2>
+                                <h2><?php echo $final['name'] ?></h2>
                                 <div class="single-product-reviews">
                                     <i class="fa fa-star active"></i>
                                     <i class="fa fa-star active"></i>
@@ -99,23 +99,23 @@ require('header.php');
                                     <a class="review-link" href="#">(1 customer review)</a>
                                 </div>
                                 <div class="single-product-price">
-                                    <span class="price new-price">Rs. <?php echo $row['price'] ?></span>
+                                    <span class="price new-price">Rs. <?php echo $final['price'] ?></span>
 
                                 </div>
                                 <div class="product-description">
-                                    <p><?php echo $row['description'] ?></p>
+                                    <p><?php echo $final['description'] ?></p>
                                 </div>
 
                                 <div class="single-product-quantity">
                                         <div class="add-to-link">
-                                            <button class="btn" onclick="location.href='carthandler.php?cart_id=<?php echo $row['id'] ?> &cart_name=<?php echo $row['name'] ?>&cart_price=<?php echo $row['price'] ?>'"><i class="fa fa-shopping-bag"></i>add to cart</button>
+                                            <button class="btn" onclick="location.href='carthandler.php?cart_id=<?php echo $final['id'] ?> &cart_name=<?php echo $final['name'] ?>&cart_price=<?php echo $final['price'] ?>'"><i class="fa fa-shopping-bag"></i>add to cart</button>
                                         </div>
                                 </div>
                                 
                                 <div class="product-meta">
                                     <span class="posted-in">
                                         Category:
-                                        <a href="#"><?php echo $row['catname'] ?></a>
+                                        <a href="#"><?php echo $final['catname'] ?></a>
                                     </span>
                                 </div>
                                 <div class="single-product-sharing">
@@ -144,7 +144,7 @@ require('header.php');
                     <div class="tab-content product-review-content-tab" id="myTabContent-4">
                         <div class="tab-pane fade active show" id="description">
                             <div class="single-product-description">
-                                <p><?php echo $row['description'] ?></p>
+                                <p><?php echo $final['description'] ?></p>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="reviews">
@@ -247,7 +247,7 @@ require('header.php');
             $sql = "select * from products ORDER BY RAND() LIMIT 4";
             $results = $connect->query($sql);
 
-            while ($row = $results->fetch_assoc()) {
+            while ($final = $results->fetch_assoc()) {
 
             ?>
                 <div class="col">
@@ -255,26 +255,26 @@ require('header.php');
                     <!--  Single Grid product Start -->
                     <div class="single-grid-product mb-40">
                         <div class="product-image">
-                            <a href="single-product.php?id=<?php echo $row['id']; ?>">
-                                <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $row['image1'];
+                            <a href="single-product.php?id=<?php echo $final['id']; ?>">
+                                <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $final['image1'];
                                                                                                     $display = substr($path, 3);
                                                                                                     echo $display; ?>" class="img-fluid" alt="">
-                                <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $row['image2'];
+                                <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $final['image2'];
                                                                                                     $display = substr($path, 3);
                                                                                                     echo $display; ?>" class="img-fluid" alt="">
                             </a>
 
                             <div class="product-action">
                                 <ul>
-                                    <li><a href="carthandler.php?cart_id=<?php echo $row['id'] ?> &cart_name=<?php echo $row['name'] ?>&cart_price=<?php echo $row['price'] ?>"><i class="fa fa-cart-plus"></i></a></li>
-                                    <li><a href="single-product.php?id=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="carthandler.php?cart_id=<?php echo $final['id'] ?> &cart_name=<?php echo $final['name'] ?>&cart_price=<?php echo $final['price'] ?>"><i class="fa fa-cart-plus"></i></a></li>
+                                    <li><a href="single-product.php?id=<?php echo $final['id']; ?>"><i class="fa fa-eye"></i></a></li>
                                     
                                 </ul>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"> <a href="single-product.html"><?php echo $row['name'] ?></a></h3>
-                            <p class="product-price"><span class="discounted-price">Rs. <?php echo $row['price'] ?></span> </p>
+                            <h3 class="title"> <a href="single-product.html"><?php echo $final['name'] ?></a></h3>
+                            <p class="product-price"><span class="discounted-price">Rs. <?php echo $final['price'] ?></span> </p>
                         </div>
                     </div>
                     <!--  Single Grid product End -->

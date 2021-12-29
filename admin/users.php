@@ -79,22 +79,22 @@ include('adminfiles/head.php')
             <tbody>
               <?php
 
-              while ($row = mysqli_fetch_assoc($res)) { ?>
+              while ($final = mysqli_fetch_assoc($res)) { ?>
                 <tr>
-                  <td style="font-size: medium;"><?php echo $row['id'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['username'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['email'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['id'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['username'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['email'] ?></td>
                   
                   <td style="font-size: medium;">
                   <div class="buttons">
                     <?php
-                    if ($row['status'] == 1) {
-                      echo "<button style='border-radius:6px;' ><a style='color:green;' href = '?type=status&operation=deactive&id=" . $row['id'] . "'>Verified</a></button>&nbsp;&nbsp;&nbsp;";
+                    if ($final['status'] == 1) {
+                      echo "<button style='border-radius:6px;' ><a style='color:green;' href = '?type=status&operation=deactive&id=" . $final['id'] . "'>Verified</a></button>&nbsp;&nbsp;&nbsp;";
                     } else {
-                      echo "<button style='border-radius:6px;'><a style='color:blue;' href = '?type=status&operation=active&id=" . $row['id'] . " '>UnVerified</a></button>&nbsp;&nbsp;&nbsp;";
+                      echo "<button style='border-radius:6px;'><a style='color:blue;' href = '?type=status&operation=active&id=" . $final['id'] . " '>UnVerified</a></button>&nbsp;&nbsp;&nbsp;";
                     }
 
-                    echo "<button style='border-radius:6px;'><a style='color:red' href = '?type=delete&id=" . $row['id'] . "'>Delete</a></button>";
+                    echo "<button style='border-radius:6px;'><a style='color:red' href = '?type=delete&id=" . $final['id'] . "'>Delete</a></button>";
                     ?>
                     </div>
                   </td>

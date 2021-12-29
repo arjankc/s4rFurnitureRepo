@@ -66,18 +66,18 @@ include('adminfiles/head.php')
             <tbody>
               <?php
 
-              while ($row = mysqli_fetch_assoc($res)) { ?>
+              while ($final = mysqli_fetch_assoc($res)) { ?>
                 <tr>
-                  <td style="font-size: medium;"><?php echo $row['id'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['name'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['email'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['message'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['id'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['name'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['email'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['message'] ?></td>
                   <td style="font-size: medium;">
                   <div class="buttons">
                     <?php
                     
 
-                    echo "<button style='border-radius:6px;'><a style='color:red' href = '?type=delete&id=" . $row['id'] . "'>Delete</a></button>";
+                    echo "<button style='border-radius:6px;'><a style='color:red' href = '?type=delete&id=" . $final['id'] . "'>Delete</a></button>";
                     ?>
                     </div>
                   </td>

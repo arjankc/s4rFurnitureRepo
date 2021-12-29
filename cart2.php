@@ -1,14 +1,12 @@
 <?php
-include('header.php');
-include('connect.php');
+include "header.php";
+include "connect.php";
+include "customersession.php";
 ?>
 
-<?php
-
-if (!isset($total)) {
-	$total = 0;
-}
-?>
+<?php if (!isset($total)) {
+    $total = 0;
+} ?>
 
 <!-- Page Banner Section Start -->
 <div class="page-banner-section section bg-image" data-bg="gallery/shopBanner.png">
@@ -51,40 +49,41 @@ if (!isset($total)) {
 						<tbody>
 
 							<tr>
-								<?php
-
-								if (isset($_SESSION['cart'])) {
-									$total = 0;
-									foreach ($_SESSION['cart'] as $key => $value) {
-										$total = $total + $value['item_price'] * $value['quantity'];
-
-								?>
-										<td class="pro-title"><a href="#"><?php echo $value['item_name'] ?></a></td>
-										<td class="pro-price"><span>Rs. <?php echo $value['item_price'] ?></span></td>
+								<?php if (isset($_SESSION["cart"])) {
+            $total = 0;
+            foreach ($_SESSION["cart"] as $key => $value) {
+                $total = $total + $value["item_price"] * $value["quantity"]; ?>
+										<td class="pro-title"><a href="#"><?php echo $value["item_name"]; ?></a></td>
+										<td class="pro-price"><span>Rs. <?php echo $value["item_price"]; ?></span></td>
 										<td class="pro-quantity">
 											<form action="cartupdate.php" method="POST">
-												<div class="pro-qty"><input type="number" name="quantity" value="<?php echo $value['quantity'] ?>"></div>
+												<div class="pro-qty"><input type="number" name="quantity" value="<?php echo $value[
+                "quantity"
+            ]; ?>"></div>
 										</td>
 
 										<td class="pro-update">
 											<button class="btn btn-sm " name="update">Update</button>
-											<input type="hidden" name="item_name" value="<?php echo $value['item_name'] ?>">
+											<input type="hidden" name="item_name" value="<?php echo $value[
+               "item_name"
+           ]; ?>">
 											</form>
 										</td>
-										<td class="pro-subtotal"><span>Rs. <?php echo $total ?></span></td>
+										<td class="pro-subtotal"><span>Rs. <?php echo $total; ?></span></td>
 										<td class="pro-remove">
 											<div class="">
 												<form action="cartremove.php" method="POST">
 													<button class="btn btn-sm " name="remove">Remove</button>
-													<input type="hidden" name="item_name" value="<?php echo $value['item_name'] ?>">
+													<input type="hidden" name="item_name" value="<?php echo $value[
+                 "item_name"
+             ]; ?>">
 												</form>
 											</div>
 										</td>
 							</tr>
 					<?php
-									}
-								}
-					?>
+            }
+        } ?>
 						</tbody>
 					</table>
 				</div>
@@ -96,10 +95,10 @@ if (!isset($total)) {
 						<div class="cart-summary">
 							<div class="cart-summary-wrap">
 								<h4>Cart Summary</h4>
-								<p>Sub Total <span>Rs. <?php echo $total ?></span></p>
+								<p>Sub Total <span>Rs. <?php echo $total; ?></span></p>
 								<p>Shipping Cost= <span>Free Shipping</span></p>
-								<h2>Grand Total <span>Rs. <?php echo $total ?></span></h2>
-								<input type="hidden" name="total" value="<?php echo $total?>">
+								<h2>Grand Total <span>Rs. <?php echo $total; ?></span></h2>
+								<input type="hidden" name="total" value="<?php echo $total; ?>">
 							</div>
 
 						</div>
@@ -147,9 +146,7 @@ if (!isset($total)) {
 </div>
 <!--Cart section end-->
 
-<?php
-include('footer.php');
-?>
+<?php include "footer.php"; ?>
 
 </div>
 

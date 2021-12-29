@@ -6,8 +6,8 @@ include('functions.php');
 require('connect.php');
 $cat_res = mysqli_query($connect, "select * from categories where status=1");
 $cat_arr = array();
-while ($row = mysqli_fetch_assoc($cat_res)) {
-    $cat_arr[] = $row;
+while ($final = mysqli_fetch_assoc($cat_res)) {
+    $cat_arr[] = $final;
 }
 ?>
 
@@ -62,17 +62,17 @@ while ($row = mysqli_fetch_assoc($cat_res)) {
                                                         }
                                                         else{
                                             
-                                                        foreach($search as $row){
+                                                        foreach($search as $final){
                                                         ?>
                                                             <div class="col-lg-3 col-md-6 col-sm-6">
                                                                 <!--  Single Grid product Start -->
                                                                 <div class="single-grid-product mb-40">
                                                                     <div class="product-image">
-                                                                       <a href="single-product.php?id=<?php echo $row['id']; ?>">
-                                                                            <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $row['image1'];
+                                                                       <a href="single-product.php?id=<?php echo $final['id']; ?>">
+                                                                            <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $final['image1'];
                                                                                                                                                 $display = substr($path, 3);
                                                                                                                                                 echo $display; ?>" class="img-fluid" alt="">
-                                                                            <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $row['image2'];
+                                                                            <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $final['image2'];
                                                                                                                                                 $display = substr($path, 3);
                                                                                                                                                 echo $display; ?>" class="img-fluid" alt="">
                                                                         </a>
@@ -81,7 +81,7 @@ while ($row = mysqli_fetch_assoc($cat_res)) {
                                                                             <ul>
                                                                                 <li><a href="cart.php"><i class="fa fa-cart-plus"></i></a></li>
                                                                                 <li>
-                                                                                <a href="#quick-view-modal-container" data-toggle="modal" title="Quick View" onclick="viewdata(<?php echo $row['id'] ?>)"><i class="fa fa-eye"></i></a>
+                                                                                <a href="#quick-view-modal-container" data-toggle="modal" title="Quick View" onclick="viewdata(<?php echo $final['id'] ?>)"><i class="fa fa-eye"></i></a>
 
                                                                                 </li>
                                                                                 <li><a href="wishlist.php"><i class="fa fa-heart-o"></i></a></li>
@@ -89,8 +89,8 @@ while ($row = mysqli_fetch_assoc($cat_res)) {
                                                                         </div>
                                                                     </div>
                                                                     <div class="product-content">
-                                                                        <h3 class="title"> <a href="single-product.php"><?php echo $row['name'] ?></a></h3>
-                                                                        <p class="product-price"><span class="discounted-price">Rs. <?php echo $row['price'] ?></span> </p>
+                                                                        <h3 class="title"> <a href="single-product.php"><?php echo $final['name'] ?></a></h3>
+                                                                        <p class="product-price"><span class="discounted-price">Rs. <?php echo $final['price'] ?></span> </p>
                                                                     </div>
                                                                 </div>
                                                                 <!--  Single Grid product End -->

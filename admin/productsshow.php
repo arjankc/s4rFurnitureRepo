@@ -81,25 +81,25 @@ include('adminfiles/head.php')
             <tbody>
               <?php
 
-              while ($row = mysqli_fetch_assoc($res)) { ?>
+              while ($final = mysqli_fetch_assoc($res)) { ?>
                 <tr>
 
-                  <td style="font-size: medium;"><?php echo $row['id'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['name'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['catname'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['price'] ?></td>
-                  <td style="font-size: medium;"><?php echo $row['description'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['id'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['name'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['catname'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['price'] ?></td>
+                  <td style="font-size: medium;"><?php echo $final['description'] ?></td>
                   <td style="font-size: medium;">
                   <div class="buttons">
                     <?php
-                    if ($row['status'] == 1) {
-                      echo "<button style='border-radius:6px;' ><a style='color:green;' href = '?type=status&operation=deactive&id=" . $row['id'] . "'>Active</a></button>&nbsp;&nbsp;&nbsp;";
+                    if ($final['status'] == 1) {
+                      echo "<button style='border-radius:6px;' ><a style='color:green;' href = '?type=status&operation=deactive&id=" . $final['id'] . "'>Active</a></button>&nbsp;&nbsp;&nbsp;";
                     } else {
-                      echo "<button style='border-radius:6px;'><a style='color:blue;' href = '?type=status&operation=active&id=" . $row['id'] . " '>Deactive</a></button>&nbsp;&nbsp;&nbsp;";
+                      echo "<button style='border-radius:6px;'><a style='color:blue;' href = '?type=status&operation=active&id=" . $final['id'] . " '>Deactive</a></button>&nbsp;&nbsp;&nbsp;";
                     }
-                    echo "<button style='border-radius:6px;'><a style='color:brown;' href ='updateProducts.php?id=" . $row['id'] . "'>Edit</a></button>&nbsp;&nbsp;&nbsp;";
+                    echo "<button style='border-radius:6px;'><a style='color:brown;' href ='updateProducts.php?id=" . $final['id'] . "'>Edit</a></button>&nbsp;&nbsp;&nbsp;";
 
-                    echo "<button style='border-radius:6px;'><a style='color:red' href = '?type=delete&id=" . $row['id'] . "'>Delete</a></button>";
+                    echo "<button style='border-radius:6px;'><a style='color:red' href = '?type=delete&id=" . $final['id'] . "'>Delete</a></button>";
                     ?>
                     </div>
                   </td>

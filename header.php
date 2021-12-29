@@ -5,8 +5,8 @@
 require('connect.php');
 $cat_res = mysqli_query($connect, "select * from categories where status=1");
 $cat_arr = array();
-while ($row = mysqli_fetch_assoc($cat_res)) {
-    $cat_arr[] = $row;
+while ($final = mysqli_fetch_assoc($cat_res)) {
+    $cat_arr[] = $final;
 }
 ?>
 
@@ -57,11 +57,11 @@ while ($row = mysqli_fetch_assoc($cat_res)) {
                                         <li><a href="shop.php">Categories</a>
                                             <ul class="sub-menu">
                                                 <?php
-                                                foreach ($cat_arr as $row) {
+                                                foreach ($cat_arr as $final) {
                                                 ?>
-                                                    <li class="dropdown-item text-left" class="nav-item text-left text-black"><a href="catview.php?catid=<?php echo $row['id']; ?>">
+                                                    <li class="dropdown-item text-left" class="nav-item text-left text-black"><a href="catview.php?catid=<?php echo $final['id']; ?>">
                                                             <?php
-                                                            echo $row['name'] ?></a></li>
+                                                            echo $final['name'] ?></a></li>
                                                 <?php
                                                 }
                                                 ?>
@@ -200,11 +200,11 @@ while ($row = mysqli_fetch_assoc($cat_res)) {
                             <li class="menu-item-has-children"><a href="#">Categories</a>
                                 <ul class="submenu2">
                                     <?php
-                                    foreach ($cat_arr as $row) {
+                                    foreach ($cat_arr as $final) {
                                     ?>
-                                        <li class="dropdown-item text-left" class="nav-item text-left text-black"><a href="catview.php?catid=<?php echo $row['id']; ?>">
+                                        <li class="dropdown-item text-left" class="nav-item text-left text-black"><a href="catview.php?catid=<?php echo $final['id']; ?>">
                                                 <?php
-                                                echo $row['name'] ?></a></li>
+                                                echo $final['name'] ?></a></li>
                                     <?php
                                     }
                                     ?>

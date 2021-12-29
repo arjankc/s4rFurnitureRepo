@@ -92,7 +92,7 @@ if (!isset($total)) {
 				<div class="row">
 					<!-- Cart Summary -->
 					<div class="col-lg-6 col-12 mb-30 d-flex">
-					<form action="#" method="POST">
+					<form action="" method="POST">
 						<div class="cart-summary">
 							<div class="cart-summary-wrap">
 								<h4>Cart Summary</h4>
@@ -101,19 +101,22 @@ if (!isset($total)) {
 								<h2>Grand Total <span>Rs. <?php echo $total ?></span></h2>
 								<input type="hidden" name="total" value="<?php echo $total?>">
 							</div>
-							<button class="btn btn-sm " name="remove"><a href="cart2.php">Proceed to Checkout</a></button>
+							
 						</div>
 					</div>
 					
 
 					</form>
 
+
 				</div>
 
 			</div>
 
 		</div>
+		<button onclick="location.href='cart2.php'" class="btn btn-sm">Proceed to Checkout</button>
 	</div>
+
 </div>
 <!--Cart section end-->
 

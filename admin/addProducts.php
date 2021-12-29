@@ -62,8 +62,8 @@
                     include('../connect.php');
                     $cat="SELECT * from categories";
                     $results=mysqli_query($connect,$cat);
-                    while($row=mysqli_fetch_assoc($results)){
-                    echo "<option value=".$row['id'].">".$row['name']."</option>";
+                    while($final=mysqli_fetch_assoc($results)){
+                    echo "<option value=".$final['id'].">".$final['name']."</option>";
                     }
                     ?>
                   </select>
