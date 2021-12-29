@@ -91,14 +91,14 @@ include "customersession.php";
 				<div class="row">
 					<!-- Cart Summary -->
 					<div class="col-lg-6 col-12 mb-30 d-flex">
-					<form action="orderhandler.php" method="POST">
+					
 						<div class="cart-summary">
 							<div class="cart-summary-wrap">
 								<h4>Cart Summary</h4>
 								<p>Sub Total <span>Rs. <?php echo $total; ?></span></p>
 								<p>Shipping Cost= <span>Free Shipping</span></p>
 								<h2>Grand Total <span>Rs. <?php echo $total; ?></span></h2>
-								<input type="hidden" name="total" value="<?php echo $total; ?>">
+								
 							</div>
 
 						</div>
@@ -107,15 +107,14 @@ include "customersession.php";
 						<!-- Calculate Shipping -->
 						<div class="calculate-shipping">
 							<h4>Shipping Address</h4>
-							
+							<form action="orderhandler.php" method="POST">
 								<div class="row">
-
 									<div class="col-md-6 col-12 mb-25">
-										<input type="text" name="address" placeholder="City">
+										<input type="text" name="address" placeholder="address">
 									</div>
 									&nbsp;
 									<div class="col-md-6 col-12 mb-25">
-										<input type="text" name="phone" placeholder="Phone Number">
+										<input type="text" name="phone" placeholder="phone">
 									</div>
 									&nbsp;
 									<div class="col-md-6 col-12 mb-25">
@@ -127,15 +126,17 @@ include "customersession.php";
 									</div>
 									&nbsp;
 									<div class="cart-summary-button">
-										<button name="placeorder" class="btn">Place Order</button>
+										<button class="btn" type="submit" name="placeorder"> Place Order </button>
+										<input type="hidden" name="total" value="<?php echo $total; ?>">
 									</div>
+									</form>
 								</div>
 							
 						</div>
 
 					</div>
 
-					</form>
+					
 
 				</div>
 
@@ -159,7 +160,3 @@ include "customersession.php";
 <script src="assets/js/vendor/bootstrap.min.js"></script>
 <script src="assets/js/plugins/plugins.js"></script>
 <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
