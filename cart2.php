@@ -1,12 +1,15 @@
 <?php
-include "header.php";
-include "connect.php";
-include "customersession.php";
+include('header.php');
+include('connect.php');
+include('customersession.php');
 ?>
 
-<?php if (!isset($total)) {
-    $total = 0;
-} ?>
+<?php
+
+if (!isset($total)) {
+	$total = 0;
+}
+?>
 
 <!-- Page Banner Section Start -->
 <div class="page-banner-section section bg-image" data-bg="gallery/shopBanner.png">
@@ -41,49 +44,37 @@ include "customersession.php";
 								<th class="pro-title">Product</th>
 								<th class="pro-price">Price</th>
 								<th class="pro-quantity">Quantity</th>
-								<th class="pro-update"></th>
+								
 								<th class="pro-subtotal">Total</th>
-								<th class="pro-remove">Action</th>
+								
 							</tr>
 						</thead>
 						<tbody>
 
 							<tr>
-								<?php if (isset($_SESSION["cart"])) {
-            $total = 0;
-            foreach ($_SESSION["cart"] as $key => $value) {
-                $total = $total + $value["item_price"] * $value["quantity"]; ?>
-										<td class="pro-title"><a href="#"><?php echo $value["item_name"]; ?></a></td>
-										<td class="pro-price"><span>Rs. <?php echo $value["item_price"]; ?></span></td>
+								<?php
+
+								if (isset($_SESSION['cart'])) {
+									$total = 0;
+									foreach ($_SESSION['cart'] as $key => $value) {
+										$total = $total + $value['item_price'] * $value['quantity'];
+
+								?>
+										<td class="pro-title"><a href="#"><?php echo $value['item_name'] ?></a></td>
+										<td class="pro-price"><span>Rs. <?php echo $value['item_price'] ?></span></td>
 										<td class="pro-quantity">
-											<form action="cartupdate.php" method="POST">
-												<div class="pro-qty"><input type="number" name="quantity" value="<?php echo $value[
-                "quantity"
-            ]; ?>"></div>
+											
+												<div ><input type="text" style="width: 50px; text-align:center;" name="quantity" value="<?php echo $value['quantity'] ?> "></div>
 										</td>
 
-										<td class="pro-update">
-											<button class="btn btn-sm " name="update">Update</button>
-											<input type="hidden" name="item_name" value="<?php echo $value[
-               "item_name"
-           ]; ?>">
-											</form>
-										</td>
-										<td class="pro-subtotal"><span>Rs. <?php echo $total; ?></span></td>
-										<td class="pro-remove">
-											<div class="">
-												<form action="cartremove.php" method="POST">
-													<button class="btn btn-sm " name="remove">Remove</button>
-													<input type="hidden" name="item_name" value="<?php echo $value[
-                 "item_name"
-             ]; ?>">
-												</form>
-											</div>
-										</td>
+										
+										<td class="pro-subtotal"><span>Rs. <?php echo $total ?></span></td>
+										
 							</tr>
 					<?php
-            }
-        } ?>
+									}
+								}
+					?>
 						</tbody>
 					</table>
 				</div>
@@ -91,14 +82,14 @@ include "customersession.php";
 				<div class="row">
 					<!-- Cart Summary -->
 					<div class="col-lg-6 col-12 mb-30 d-flex">
-					
+					<form action="orderhandler.php" method="POST">
 						<div class="cart-summary">
 							<div class="cart-summary-wrap">
 								<h4>Cart Summary</h4>
-								<p>Sub Total <span>Rs. <?php echo $total; ?></span></p>
+								<p>Sub Total <span>Rs. <?php echo $total ?></span></p>
 								<p>Shipping Cost= <span>Free Shipping</span></p>
-								<h2>Grand Total <span>Rs. <?php echo $total; ?></span></h2>
-								
+								<h2>Grand Total <span>Rs. <?php echo $total ?></span></h2>
+								<input type="hidden" name="total" value="<?php echo $total?>">
 							</div>
 
 						</div>
@@ -107,14 +98,15 @@ include "customersession.php";
 						<!-- Calculate Shipping -->
 						<div class="calculate-shipping">
 							<h4>Shipping Address</h4>
-							<form action="orderhandler.php" method="POST">
+							
 								<div class="row">
+
 									<div class="col-md-6 col-12 mb-25">
-										<input type="text" name="address" placeholder="address">
+										<input type="text" name="address" placeholder="City">
 									</div>
 									&nbsp;
 									<div class="col-md-6 col-12 mb-25">
-										<input type="text" name="phone" placeholder="phone">
+										<input type="text" name="phone" placeholder="Phone Number">
 									</div>
 									&nbsp;
 									<div class="col-md-6 col-12 mb-25">
@@ -126,17 +118,15 @@ include "customersession.php";
 									</div>
 									&nbsp;
 									<div class="cart-summary-button">
-										<button class="btn" type="submit" name="placeorder"> Place Order </button>
-										<input type="hidden" name="total" value="<?php echo $total; ?>">
+										<button name="placeorder" class="btn">Place Order</button>
 									</div>
-									</form>
 								</div>
 							
 						</div>
 
 					</div>
 
-					
+					</form>
 
 				</div>
 
@@ -147,7 +137,9 @@ include "customersession.php";
 </div>
 <!--Cart section end-->
 
-<?php include "footer.php"; ?>
+<?php
+include('footer.php');
+?>
 
 </div>
 
@@ -160,3 +152,7 @@ include "customersession.php";
 <script src="assets/js/vendor/bootstrap.min.js"></script>
 <script src="assets/js/plugins/plugins.js"></script>
 <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

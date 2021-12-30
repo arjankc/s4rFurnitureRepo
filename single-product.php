@@ -34,7 +34,7 @@ require('header.php');
                         $id = $_GET['id'];
                         $sql = "SELECT c.name AS catname, d.* FROM products d JOIN categories c ON d.category_id = c.id  WHERE d.id='$id'";
                         $results = $connect->query($sql);
-                        $final = $results->fetch_assoc();
+                        $row = $results->fetch_assoc();
 
                         ?>
                         <div class="col-md-6 pr-35 pr-lg-15 pr-md-15 pr-sm-15 pr-xs-15">
@@ -42,26 +42,26 @@ require('header.php');
                             <div class="product-details-left">
                                 <div class="product-details-images">
                                     <div class="lg-image">
-                                        <img src="<?php $path = $final['image1'];
+                                        <img src="<?php $path = $row['image1'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" alt="">
-                                        <a href="<?php $path = $final['image1'];
+                                        <a href="<?php $path = $row['image1'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<?php $path = $final['image2'];
+                                        <img src="<?php $path = $row['image2'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" alt="">
-                                        <a href="<?php $path = $final['image2'];
+                                        <a href="<?php $path = $row['image2'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
                                     </div>
                                     <div class="lg-image">
-                                        <img src="<?php $path = $final['image1'];
+                                        <img src="<?php $path = $row['image1'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" alt="">
-                                        <a href="<?php $path = $final['image1'];
+                                        <a href="<?php $path = $row['image1'];
                                                     $display = substr($path, 3);
                                                     echo $display; ?>" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
                                     </div>
@@ -69,16 +69,16 @@ require('header.php');
 
                                 </div>
                                 <div class="product-details-thumbs">
-                                    <div class="sm-image"><img src="<?php $path = $final['image1'];
+                                    <div class="sm-image"><img src="<?php $path = $row['image1'];
                                                                     $display = substr($path, 3);
                                                                     echo $display; ?>" alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="<?php $path = $final['image2'];
+                                    <div class="sm-image"><img src="<?php $path = $row['image2'];
                                                                     $display = substr($path, 3);
                                                                     echo $display; ?>" alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="<?php $path = $final['image1'];
+                                    <div class="sm-image"><img src="<?php $path = $row['image1'];
                                                                     $display = substr($path, 3);
                                                                     echo $display; ?>" alt="product image thumb"></div>
-                                    <div class="sm-image"><img src="<?php $path = $final['image2'];
+                                    <div class="sm-image"><img src="<?php $path = $row['image2'];
                                                                     $display = substr($path, 3);
                                                                     echo $display; ?>" alt="product image thumb"></div>
 
@@ -89,33 +89,27 @@ require('header.php');
                         <div class="col-md-6">
                             <!--Product Details Content Start-->
                             <div class="product-details-content">
-                                <h2><?php echo $final['name'] ?></h2>
-                                <div class="single-product-reviews">
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star active"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <a class="review-link" href="#">(1 customer review)</a>
-                                </div>
+                                <h2><?php echo $row['name'] ?></h2>
+                                
                                 <div class="single-product-price">
-                                    <span class="price new-price">Rs. <?php echo $final['price'] ?></span>
+                                    <span class="price new-price">Rs. <?php echo $row['price'] ?></span>
 
                                 </div>
                                 <div class="product-description">
-                                    <p><?php echo $final['description'] ?></p>
+                                    <u>About This Product:</u>
+                                    <p><?php echo $row['description'] ?></p>
                                 </div>
 
                                 <div class="single-product-quantity">
                                         <div class="add-to-link">
-                                            <button class="btn" onclick="location.href='carthandler.php?cart_id=<?php echo $final['id'] ?> &cart_name=<?php echo $final['name'] ?>&cart_price=<?php echo $final['price'] ?>'"><i class="fa fa-shopping-bag"></i>add to cart</button>
+                                            <button class="btn" onclick="location.href='carthandler.php?cart_id=<?php echo $row['id'] ?> &cart_name=<?php echo $row['name'] ?>&cart_price=<?php echo $row['price'] ?>'"><i class="fa fa-shopping-bag"></i>add to cart</button>
                                         </div>
                                 </div>
                                 
                                 <div class="product-meta">
                                     <span class="posted-in">
                                         Category:
-                                        <a href="#"><?php echo $final['catname'] ?></a>
+                                        <a href="#"><?php echo $row['catname'] ?></a>
                                     </span>
                                 </div>
                                 <div class="single-product-sharing">
@@ -135,83 +129,16 @@ require('header.php');
                         <li>
                             <a class="active" data-toggle="tab" href="#description">Description</a>
                         </li>
-                        <li>
-                            <a data-toggle="tab" href="#reviews">Reviews (1)</a>
-                        </li>
                     </ul>
                     <!--Review And Description Tab Menu End-->
                     <!--Review And Description Tab Content Start-->
                     <div class="tab-content product-review-content-tab" id="myTabContent-4">
                         <div class="tab-pane fade active show" id="description">
                             <div class="single-product-description">
-                                <p><?php echo $final['description'] ?></p>
+                                <p><?php echo $row['description'] ?></p>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="reviews">
-                            <div class="review-page-comment">
-                                <h2>1 review for Sit voluptatem</h2>
-                                <ul>
-                                    <li>
-                                        <div class="product-comment">
-                                            <img src="./assets/images/icons/author.png" alt="">
-                                            <div class="product-comment-content">
-                                                <div class="product-reviews">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                                <p class="meta">
-                                                    <strong>admin</strong> - <span>November 22, 2018</span>
-                                                <div class="description">
-                                                    <p>Good Product</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="review-form-wrapper">
-                                    <div class="review-form">
-                                        <span class="comment-reply-title">Add a review </span>
-                                        <form action="#">
-                                            <p class="comment-notes">
-                                                <span id="email-notes">Your email address will not be published.</span>
-                                                Required fields are marked
-                                                <span class="required">*</span>
-                                            </p>
-                                            <div class="comment-form-rating">
-                                                <label>Your rating</label>
-                                                <div class="rating">
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            </div>
-                                            <div class="input-element">
-                                                <div class="comment-form-comment">
-                                                    <label>Comment</label>
-                                                    <textarea name="message" cols="40" rows="8"></textarea>
-                                                </div>
-                                                <div class="review-comment-form-author">
-                                                    <label>Name </label>
-                                                    <input required="required" type="text">
-                                                </div>
-                                                <div class="review-comment-form-email">
-                                                    <label>Email </label>
-                                                    <input required="required" type="text">
-                                                </div>
-                                                <div class="comment-submit">
-                                                    <button type="submit" class="form-button">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <!--Review And Description Tab Content End-->
                 </div>
@@ -247,7 +174,7 @@ require('header.php');
             $sql = "select * from products ORDER BY RAND() LIMIT 4";
             $results = $connect->query($sql);
 
-            while ($final = $results->fetch_assoc()) {
+            while ($row = $results->fetch_assoc()) {
 
             ?>
                 <div class="col">
@@ -255,26 +182,26 @@ require('header.php');
                     <!--  Single Grid product Start -->
                     <div class="single-grid-product mb-40">
                         <div class="product-image">
-                            <a href="single-product.php?id=<?php echo $final['id']; ?>">
-                                <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $final['image1'];
+                            <a href="single-product.php?id=<?php echo $row['id']; ?>">
+                                <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $row['image1'];
                                                                                                     $display = substr($path, 3);
                                                                                                     echo $display; ?>" class="img-fluid" alt="">
-                                <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $final['image2'];
+                                <img style="height: 270px!important;width: 290px!important; " src="<?php $path = $row['image2'];
                                                                                                     $display = substr($path, 3);
                                                                                                     echo $display; ?>" class="img-fluid" alt="">
                             </a>
 
                             <div class="product-action">
                                 <ul>
-                                    <li><a href="carthandler.php?cart_id=<?php echo $final['id'] ?> &cart_name=<?php echo $final['name'] ?>&cart_price=<?php echo $final['price'] ?>"><i class="fa fa-cart-plus"></i></a></li>
-                                    <li><a href="single-product.php?id=<?php echo $final['id']; ?>"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="carthandler.php?cart_id=<?php echo $row['id'] ?> &cart_name=<?php echo $row['name'] ?>&cart_price=<?php echo $row['price'] ?>"><i class="fa fa-cart-plus"></i></a></li>
+                                    <li><a href="single-product.php?id=<?php echo $row['id']; ?>"><i class="fa fa-eye"></i></a></li>
                                     
                                 </ul>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3 class="title"> <a href="single-product.html"><?php echo $final['name'] ?></a></h3>
-                            <p class="product-price"><span class="discounted-price">Rs. <?php echo $final['price'] ?></span> </p>
+                            <h3 class="title"> <a href="single-product.html"><?php echo $row['name'] ?></a></h3>
+                            <p class="product-price"><span class="discounted-price">Rs. <?php echo $row['price'] ?></span> </p>
                         </div>
                     </div>
                     <!--  Single Grid product End -->
